@@ -40,11 +40,14 @@ void Atacar(struct Territorio *atacante, struct Territorio *defensor) {
             // Troca a cor do território
             strcpy(defensor->cor, atacante->cor);
 
-            // Move uma tropa para o território conquistado
-            defensor->tropas = 1;
+            // Calcula metade das tropas do atacante
+            int tropas_transferidas = atacante->tropas / 2;
 
-            // Remove uma tropa do atacante
-            atacante->tropas--;
+            // Move metade das tropas para o território conquistado
+            defensor->tropas = tropas_transferidas;
+
+            // Remove essas tropas do atacante
+            atacante->tropas -= tropas_transferidas;
 
             printf("O território agora pertence ao exército %s.\n",
                    defensor->cor);
